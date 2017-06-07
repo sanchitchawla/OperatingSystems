@@ -37,6 +37,7 @@ int main(int argc, char **argv) {
   sleep(20);
   fprintf(stdout, "\n\n");
 
+
   fprintf(stdout, "**main** dispatch 3\n");
   dispatch(tp, dispatch_to_me, (void *) 3);
   fprintf(stdout, "**main** dispatch 6\n");
@@ -46,6 +47,7 @@ int main(int argc, char **argv) {
 
   fprintf(stdout, "**main done second\n");
   sleep(20);
+  destroy_threadpool(tp);
   exit(-1);
 }
 

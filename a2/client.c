@@ -37,7 +37,6 @@ int main(int argc, char **argv) {
   for (i=0; i<REQUEST_SIZE; i++) {
     request[i] = (char) i%255;
   }
-
   // spin forever, opening connections, and pushing requests
   while(1) {
     int result;
@@ -47,7 +46,6 @@ int main(int argc, char **argv) {
       perror("(CLIENT): sconnect");
       exit(1);
     }
-
     // write the request
     result = correct_write(socket_talk, request, REQUEST_SIZE);
     if (result == REQUEST_SIZE) {

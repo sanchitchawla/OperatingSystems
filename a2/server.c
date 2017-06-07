@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <errno.h>
+#include "threadpool.h"
 
 #include "lib/socklib.h"
 #include "common.h"
@@ -25,83 +26,6 @@ int   setup_listen(char *socketNumber);
 char *read_request(int fd);
 char *process_request(char *request, int *response_length);
 void  send_response(int fd, char *response, int response_length);
-
-/**
-* This program should be invoked as "./server <socketnumber>", for
-* example, "./server 4342".
-*/
-
-int main(int argc, char **argv)
-{
-    char buf[1000];
-    int  socket_listen;
-    int  socket_talk;
-    int  dummy, len;
-
-    if (argc != 2)
-    {
-        fprintf(stderr, "(SERVER): Invoke as  './server socknum'\n");
-        fprintf(stderr, "(SERVER): for example, './server 4434'\n");
-        exit(-1);
-    }
-
-    /*
-    * Set up the 'listening socket'.  This establishes a network
-    * IP_address:port_number that other programs can connect with.
-    */
-    socket_listen = setup_listen(argv[1]);
-
-    /*
-    * Here's the main loop of our program.  Inside the loop, the
-    * one thread in the server performs the following steps:
-    *
-    *  1) Wait on the socket for a new connection to arrive.  This
-    *     is done using the "accept" library call.  The return value
-    *     of "accept" is a file descriptor for a new data socket associated
-    *     with the new connection.  The 'listening socket' still exists,
-    *     so more connections can be made to it later.
-    *
-    *  2) Read a request off of the listening socket.  Requests
-    *     are, by definition, REQUEST_SIZE bytes long.
-    *
-    *  3) Process the request.
-    *
-    *  4) Write a response back to the client.
-    *
-    *  5) Close the data socket associated with the connection
-    */
-
-    while(1) {
-        char *request = NULL;
-        char *response = NULL;
-
-        socket_talk = saccept(socket_listen);  // step 1
-        if (socket_talk < 0) {
-            fprintf(stderr, "An error occured in the server; a connection\n");
-            fprintf(stderr, "failed because of ");
-            perror("");
-            exit(1);
-        }
-        request = read_request(socket_talk);  // step 2
-        if (request != NULL) {
-            int response_length;
-
-            response = process_request(request, &response_length);  // step 3
-            if (response != NULL) {
-                send_response(socket_talk, response, response_length);  // step 4
-            }
-        }
-        close(socket_talk);  // step 5
-
-        // clean up allocated memory, if any
-        if (request != NULL)
-        free(request);
-        if (response != NULL)
-        free(response);
-    }
-}
-
-
 
 /**
 * This function accepts a string of the form "5654", and opens up
@@ -170,4 +94,66 @@ char *process_request(char *request, int *response_length) {
     }
     *response_length = RESPONSE_SIZE;
     return response;
+}
+
+void dispatch_server(void* socket_){
+
+	int socket_talk = (int) socket_;
+	char *request = NULL;
+    char *response = NULL;
+    if (socket_talk < 0) {
+        fprintf(stderr, "An error occured in the server; a connection\n");
+        fprintf(stderr, "failed because of ");
+        perror("");
+        exit(1);
+    }
+    request = read_request(socket_talk);  // step 2
+    if (request != NULL) {
+        int response_length;
+
+        response = process_request(request, &response_length);  // step 3
+        if (response != NULL) {
+            send_response(socket_talk, response, response_length);  // step 4
+        }
+    }
+    close(socket_talk);  // step 5
+
+    // clean up allocated memory, if any
+    if (request != NULL)
+    free(request);
+    if (response != NULL)
+    free(response);
+}
+
+/**
+* This program should be invoked as "./server <socketnumber>", for
+* example, "./server 4342".
+*/
+
+int main(int argc, char **argv)
+{
+    char buf[1000];
+    int  socket_listen;
+    int  socket_talk;
+    int  dummy, len;
+
+    if (argc != 2)
+    {
+        fprintf(stderr, "(SERVER): Invoke as  './server socknum'\n");
+        fprintf(stderr, "(SERVER): for example, './server 4434'\n");
+        exit(-1);
+    }
+
+    /*
+    * Set up the 'listening socket'.  This establishes a network
+    * IP_address:port_number that other programs can connect with.
+    */
+    socket_listen = setup_listen(argv[1]);
+    threadpool tp = create_threadpool(4);
+
+    while(1) {
+
+        socket_talk = saccept(socket_listen);  // step 1
+        dispatch(tp, dispatch_server, (void *) socket_talk);
+    }
 }

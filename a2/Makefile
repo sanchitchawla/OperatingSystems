@@ -7,43 +7,43 @@ SRCS= client.c server.c
 LIBS = -L./lib/
 
 all:: socketlib client server example_thread threadpool_test
-	strip client
-	strip server
-	strip example_thread
-	strip threadpool_test
+#	# strip client
+#	# strip server
+#	# strip example_thread
+#	# strip threadpool_test
 
 socketlib:
 	cd lib && make
 
 example_thread: example_thread.o
-	$(CC) -o example_thread example_thread.o -lpthread
+	$(CC) $(CFLAGS) -o example_thread example_thread.o -lpthread
 
 client: client.o common.o
-	$(CC) -o client client.o common.o $(LIBS) -lsock -lpthread
+	$(CC) $(CFLAGS) -o client client.o common.o $(LIBS) -lsock -lpthread
 
-server: server.o common.o
-	$(CC) -o server server.o common.o $(LIBS) -lsock -lpthread
+server: server.o common.o threadpool.o
+	$(CC) $(CFLAGS) -o server server.o threadpool.o common.o $(LIBS) -lsock -lpthread
 
 threadpool_test: threadpool_test.o threadpool.o
-	$(CC) -o threadpool_test threadpool_test.o threadpool.o -lpthread
+	$(CC) $(CFLAGS) -o threadpool_test threadpool_test.o threadpool.o -lpthread
 
 client.o: client.c common.h
-	$(CC) -o client.o -c client.c
+	$(CC) $(CFLAGS) -o client.o -c client.c
 
 server.o: server.c common.h
-	$(CC) -o server.o -c server.c
+	$(CC) $(CFLAGS) -o server.o -c server.c
 
 common.o: common.c
-	$(CC) -o common.o -c common.c
+	$(CC) $(CFLAGS) -o common.o -c common.c
 
 example_thread.o: example_thread.c
-	$(CC) -o example_thread.o -c example_thread.c
+	$(CC) $(CFLAGS) -o example_thread.o -c example_thread.c
 
 threadpool.o: threadpool.c
-	$(CC) -o threadpool.o -c threadpool.c
+	$(CC) $(CFLAGS) -o threadpool.o -c threadpool.c
 
 threadpool_test.o: threadpool_test.c threadpool.h
-	$(CC) -o threadpool_test.o -c threadpool_test.c
+	$(CC) $(CFLAGS) -o threadpool_test.o -c threadpool_test.c
 
 clean:
 	/bin/rm -f mtserver.zip
