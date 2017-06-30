@@ -71,8 +71,8 @@ char *read_request(int fd) {
 * This is where all of the hard work happens.
 * This function is thread-safe.
 */
-
-#define NUM_LOOPS 500000
+// 1, 100, 1000, 10000, 100000, 500000 
+#define NUM_LOOPS 1000
 
 char *process_request(char *request, int *response_length) {
     char *response = (char *) malloc(RESPONSE_SIZE*sizeof(char));
@@ -129,13 +129,21 @@ void dispatch_server(void* socket_){
 * This program should be invoked as "./server <socketnumber>", for
 * example, "./server 4342".
 */
-
 int main(int argc, char **argv)
 {
     char buf[1000];
     int  socket_listen;
     int  socket_talk;
     int  dummy, len;
+    setvbuf(stdout, NULL, _IONBF, 0);
+  	struct timeval tv = {0};
+
+  	gettimeofday(&tv, NULL);
+  	long start;
+  	long now, persec;
+
+  	int i = 0;
+  	long t;
 
     if (argc != 2)
     {
@@ -155,5 +163,19 @@ int main(int argc, char **argv)
 
         socket_talk = saccept(socket_listen);  // step 1
         dispatch(tp, dispatch_server, (void *) socket_talk);
-    }
+        i++;
+    	if (i == 1) {
+    	  gettimeofday(&tv, NULL);
+    	  start = tv.tv_sec;
+    	}
+    	if (i % 100 == 0) {
+    	  gettimeofday(&tv, NULL);
+    	  now = tv.tv_sec;
+    	  t = (now-start);
+    	  if (t>0) {
+    	    persec = (i)/t;
+    	    printf("%ld\n", persec);
+    	  }
+    	}
+   }
 }

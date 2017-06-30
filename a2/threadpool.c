@@ -5,8 +5,8 @@
 
 #include "threadpool.h"
 
-// // _threadpool is the internal threadpool structure that is
-// // cast to type "threadpool" before it given out to callers
+// _threadpool is the internal threadpool structure that is
+// cast to type "threadpool" before it given out to callers
 // typedef struct queue
 // {
 //   void (*func) (void*); // function pointer
@@ -212,22 +212,21 @@ typedef struct work_st{
 	struct work_st* next;
 } work_t;
 
-typedef struct _threadpool_st {
-   // you should fill in this structure with whatever you need
-	int activethreads;
-	int queuesize;			
+typedef struct _threadpool{
+	int num_of_threads;			
 	pthread_t *threads;	
 	work_t* queuehead;	
 	work_t* queuetail;		
-	pthread_mutex_t lockqueue;	
-	pthread_cond_t QueueInUse;
-	pthread_cond_t QueueIsEmpty;
+	pthread_mutex_t lock;	
+	pthread_cond_t not_empty;
+	pthread_cond_t empty;
 	int shutdown;
 	int dont_accept;
+	int size;
 	int threadsleft;
 } _threadpool;
 
-/* This function is the work function of the thread */
+
 void* worker_thread(threadpool p) {
 	_threadpool * pool = (_threadpool *) p;
 	work_t* cur;	
@@ -235,31 +234,28 @@ void* worker_thread(threadpool p) {
 
 	while(1) {
 
-		pool->queuesize = pool->queuesize;
-		pthread_mutex_lock(&(pool->lockqueue));  
+		pthread_mutex_lock(&(pool->lock));  
 
-		if (pool->queuesize == 0){
-			pthread_cond_wait(&(pool->QueueInUse), &(pool->lockqueue));
+		if (pool->size == 0){
+			pthread_cond_wait(&(pool->not_empty), &(pool->lock));
 		}
 
-
-		while( pool->queuesize == 0) {	  
+		while( pool->size == 0) {	  
 			if(pool->shutdown) {
-				pthread_mutex_unlock(&(pool->lockqueue));
+				pthread_mutex_unlock(&(pool->lock));
 				pthread_exit(NULL);
 			}
 			
-
 		}
 
-		pthread_mutex_unlock(&(pool->lockqueue));  
+		pthread_mutex_unlock(&(pool->lock));  
 
 		cur = pool->queuehead;	  
 
-		pool->queuesize--;		  
+		pool->size--;		  
 		pool->threadsleft++;
 
-		if(pool->queuesize == 0) {
+		if(pool->size == 0) {
 			pool->queuehead = NULL;
 			pool->queuetail = NULL;
 		}
@@ -267,19 +263,19 @@ void* worker_thread(threadpool p) {
 			pool->queuehead = cur->next;
 		}
 
-		if(pool->queuesize == 0 && ! pool->shutdown) {
-			pthread_cond_signal(&(pool->QueueIsEmpty));
+		if(pool->size == 0 && ! pool->shutdown) {
+			pthread_cond_signal(&(pool->empty));
 		}
-		pthread_mutex_unlock(&(pool->lockqueue));
+		pthread_mutex_unlock(&(pool->lock));
 		(cur->routine) (cur->arg);
-		pthread_mutex_lock(&(pool->lockqueue));
+		pthread_mutex_lock(&(pool->lock));
 
 		free(cur);
 		if (pool->threadsleft == 1){
-			pthread_mutex_unlock(&(pool->lockqueue));
-			pthread_cond_signal(&(pool->QueueIsEmpty));
+			pthread_mutex_unlock(&(pool->lock));
+			pthread_cond_signal(&(pool->empty));
 		}else{
-			pthread_mutex_unlock(&(pool->lockqueue));
+			pthread_mutex_unlock(&(pool->lock));
 		}
 	}
 }
@@ -305,26 +301,25 @@ threadpool create_threadpool(int num_threads_in_pool) {
 
   pool->queuehead = NULL;
   pool->queuetail = NULL;
-  pool->queuesize = 0;
+  pool->size = 0;
   pool->dont_accept = 0;
   pool->shutdown  = 0;
-  pool->activethreads = num_threads_in_pool;
-  pool->threadsleft = num_threads_in_pool;
+  pool->num_of_threads = pool->threadsleft= num_threads_in_pool;
 
-  if (pthread_cond_init(&pool->QueueIsEmpty, NULL)){
+  if (pthread_cond_init(&pool->empty, NULL)){
     fprintf(stderr, "CV initiation error\n");
     return NULL;
   }
-  if (pthread_mutex_init(&pool->lockqueue, NULL)){
+  if (pthread_mutex_init(&pool->lock, NULL)){
     fprintf(stderr, "Mutex error\n");
     return NULL;
   }
-  if (pthread_cond_init(&pool->QueueInUse, NULL)){
+  if (pthread_cond_init(&pool->not_empty, NULL)){
     fprintf(stderr, "CV initiation error\n");
     return NULL;
   }
 
-  for (int i = 0; i < pool->activethreads;i++){
+  for (int i = 0; i < pool->num_of_threads;i++){
     if (pthread_create(&(pool->threads[i]), NULL, worker_thread, pool)){
       fprintf(stderr, "Thread couldn't initialize\n");
       return NULL;
@@ -340,7 +335,7 @@ void dispatch(threadpool from_me, dispatch_fn dispatch_to_here,
 	work_t *cur;
 	int k;
 
-	k = pool->queuesize;
+	k = pool->size;
 
 	//make a work queue element.  
 	cur = (work_t*) malloc(sizeof(work_t));
@@ -353,39 +348,50 @@ void dispatch(threadpool from_me, dispatch_fn dispatch_to_here,
 	cur->arg = arg;
 	cur->next = NULL;
 
-	pthread_mutex_lock(&(pool->lockqueue));
+	pthread_mutex_lock(&(pool->lock));
 
 	if(pool->dont_accept) { 
 		free(cur); 
 		return;
 	}
-	if(pool->queuesize == 0) {
+	if(pool->size == 0) {
 		pool->queuehead = cur;  
 		pool->queuetail = cur;
 	} else {
 		pool->queuetail->next = cur;
 		pool->queuetail = cur;			
 	}
-	pool->queuesize++;
+	pool->size++;
 	pool->threadsleft--;
 
-	pthread_mutex_unlock(&(pool->lockqueue)); 
-	pthread_cond_signal(&(pool->QueueInUse)); 
-	pthread_mutex_lock(&(pool->lockqueue));
+	pthread_mutex_unlock(&(pool->lock)); 
+	pthread_cond_signal(&(pool->not_empty)); 
+	pthread_mutex_lock(&(pool->lock));
 
 	if (pool->threadsleft == 0){
-		pthread_cond_wait(&(pool->QueueIsEmpty), &(pool->lockqueue));
+		pthread_cond_wait(&(pool->empty), &(pool->lock));
 	}
 
-	pthread_mutex_unlock(&(pool->lockqueue));
+	pthread_mutex_unlock(&(pool->lock));
 }
 
 void destroy_threadpool(threadpool destroyme) {
 	_threadpool *pool = (_threadpool *) destroyme;
-	free(pool->threads);
+	void* nothing;
+	pthread_mutex_lock(&(pool->lock));
+	pool->shutdown = 1;
+	pthread_mutex_unlock(&(pool->lock));
+	pthread_cond_broadcast(&(pool->not_empty)); 
 
-	pthread_mutex_destroy(&(pool->lockqueue));
-	pthread_cond_destroy(&(pool->QueueIsEmpty));
-	pthread_cond_destroy(&(pool->QueueInUse));
-	return;
+	for(int i = 0;i < pool->num_of_threads;i++) {
+    	pthread_cond_broadcast(&(pool->not_empty));
+    	pthread_join(pool->threads[i],&nothing);
+  	}
+
+	pthread_mutex_destroy(&(pool->lock));
+	pthread_cond_destroy(&(pool->empty));
+	pthread_cond_destroy(&(pool->not_empty));
+
+  	free(pool->threads);
+  	free(pool);
 }

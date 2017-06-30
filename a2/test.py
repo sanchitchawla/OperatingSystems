@@ -1,7 +1,7 @@
 import os.path
 
 def calculate(file):
-	execfile( "MakeFile")
+	#execfile( "Makefile")
 	total = 0.0
 	i = 0
 	if (not os.path.exists(file)):
@@ -12,3 +12,5 @@ def calculate(file):
 			# print line.split("\n")
 			total+=int(line.split("\n")[0])
 	return total/i
+
+print calculate('test.txt')

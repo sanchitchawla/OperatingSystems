@@ -1,0 +1,186 @@
+/**
+ * threadpool.c
+ *
+ * This file will contain your implementation of a threadpool.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+
+#include "threadpool.h"
+
+
+// tasks for the pool
+typedef struct task_t {
+	struct task_t* next;
+	dispatch_fn dispatch_function;
+	void* args;
+} task;
+
+// queue for tasks about to enter the pool
+typedef struct taskqueue_t {
+	int length;
+	task* front;
+	task* rear;
+} taskqueue;
+
+// _threadpool is the internal threadpool structure that is
+// cast to type "threadpool" before it given out to callers
+typedef struct _threadpool_st {
+	// you should fill in this structure with whatever you need
+	int num_threads_in_pool;
+	int num_threads_available;
+	int num_threads;
+	pthread_t* threads;
+	pthread_mutex_t lock;
+	char stop;
+	pthread_cond_t start_task;
+	pthread_cond_t condvar;
+	taskqueue* queue_tasks;
+} _threadpool;
+
+void *worker_thread(void *args) {
+	_threadpool* pool = (_threadpool*) args;
+	while (1) {
+		pthread_mutex_lock(&(pool->lock));
+		if (pool->queue_tasks->length == 0) {
+			//printf("WAIT START\n");
+			pthread_cond_wait(&(pool->start_task), &(pool->lock));
+			if (pool->stop) {
+				pool->num_threads_in_pool--;
+				pool->num_threads_available--;
+				pthread_mutex_unlock(&(pool->lock));
+				break;
+			}
+		}
+
+		if (pool->queue_tasks->length == 0)
+			continue;
+		task* current_task = pool->queue_tasks->front;
+
+		if (pool->queue_tasks->length == 1) {
+			pool->queue_tasks->front = NULL;
+			pool->queue_tasks->rear = NULL;
+		} else {
+			pool->queue_tasks->front = pool->queue_tasks->front->next;
+		}
+		(pool->queue_tasks->length)--;
+
+		// if (pool->stop && pool->queue_tasks == 0) {
+		//   pool->num_threads_in_pool--;
+		//   pool->num_threads_available--;
+		//   break;
+		// }
+		pthread_mutex_unlock(&(pool->lock));
+
+		(current_task->dispatch_function)(current_task->args);
+
+		pthread_mutex_lock(&(pool->lock));
+		free(current_task);
+		(pool->num_threads_available)++;
+		if (pool->num_threads_available == 1) {
+			pthread_mutex_unlock(&(pool->lock));
+			//printf("WAIT COND\n");
+			pthread_cond_signal(&(pool->condvar));
+		} else {
+			pthread_mutex_unlock(&(pool->lock));
+		}
+	}
+	return NULL;
+}
+
+
+threadpool create_threadpool(int num_threads_in_pool) {
+	_threadpool *pool;
+
+	// sanity check the argument
+	if ((num_threads_in_pool <= 0) || (num_threads_in_pool > MAXT_IN_POOL))
+		return NULL;
+
+	pool = (_threadpool *) malloc(sizeof(_threadpool));
+	if (pool == NULL) {
+		fprintf(stderr, "Out of memory creating a new threadpool!\n");
+		return NULL;
+	}
+
+	// add your code here to initialize the newly created threadpool
+	pool->num_threads_in_pool = num_threads_in_pool;
+	pool->num_threads_available = num_threads_in_pool;
+	pool->num_threads = num_threads_in_pool;
+	pthread_mutex_init(&(pool->lock), NULL);
+	pthread_cond_init(&(pool->condvar), NULL);
+	pthread_cond_init(&(pool->start_task), NULL);
+
+	pool->threads = (pthread_t*)malloc(sizeof(pthread_t) * num_threads_in_pool);
+	pool->queue_tasks = (taskqueue*)malloc(sizeof(taskqueue));
+
+	pool->queue_tasks->length = 0;
+	pool->stop = 0;
+	pool->queue_tasks->front = NULL;
+	pool->queue_tasks->rear = NULL;
+
+	for (int i = 0; i < num_threads_in_pool; ++i){
+		pthread_create(&(pool->threads[i]), NULL, worker_thread, (void*)pool);
+	}
+
+	return (threadpool) pool;
+}
+
+
+void dispatch(threadpool from_me, dispatch_fn dispatch_to_here,
+		void *arg) {
+	_threadpool *pool = (_threadpool *) from_me;
+
+	task* newtask = (task*)malloc(sizeof(task));
+	newtask->dispatch_function = dispatch_to_here;
+	newtask->args = arg;
+	newtask->next = NULL;
+	taskqueue* queue = pool->queue_tasks;
+
+	pthread_mutex_lock(&(pool->lock));
+	if (queue->length == 0) {
+		queue->front = newtask;
+		queue->rear = newtask;
+	} else {
+		queue->rear->next = newtask;
+		queue->rear = newtask;
+	}
+
+	(queue->length)++;
+	(pool->num_threads_available)--;
+	pthread_mutex_unlock(&(pool->lock));
+
+	//printf("SIG START\n");
+	pthread_cond_signal(&(pool->start_task));
+
+	pthread_mutex_lock(&(pool->lock));
+	if (pool->num_threads_available <= 0) {
+		//printf("WAIT COND\n");
+		pthread_cond_wait(&(pool->condvar), &(pool->lock));
+	}
+	pthread_mutex_unlock(&(pool->lock));
+}
+
+
+void destroy_threadpool(threadpool destroyme) {
+	_threadpool *pool = (_threadpool *) destroyme;
+	void* res;
+	//printf("START THREAD MURDER PARTY\n");
+	pthread_mutex_lock(&(pool->lock));
+	pool->stop = 1;
+	pthread_mutex_unlock(&(pool->lock));
+	while(pool->num_threads_in_pool != 0)
+		pthread_cond_broadcast(&(pool->start_task));
+	for (int i = 0; i < pool->num_threads; ++i) {
+		pthread_join((pool->threads)[i], &res);
+		//printf("MURDER THREAD::%d\n", i);
+	}
+	pthread_cond_destroy(&(pool->condvar));
+	pthread_cond_destroy(&(pool->start_task));
+	pthread_mutex_destroy(&(pool->lock));
+	free(pool->threads);
+	free(pool->queue_tasks);
+	free(pool);
+}
