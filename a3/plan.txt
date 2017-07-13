@@ -1,2 +1,7 @@
-# Your name
-# Describe your plan of execution in this file.
+# Sanchit Chawla
+
+Random fault handler
+
+- So first we seed to randomize, then get a random frame
+- if it's full, i loop through the frame, until we reach the random frame and write it
+- else I just write it to the last free frame 
