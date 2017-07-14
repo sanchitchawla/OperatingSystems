@@ -21,7 +21,6 @@ int disk_reads = 0;
 int disk_writes = 0;
 int last_frame_counter = 0;
 int fifo_counter = 0;
-int first_frame;
 int* seech_array;
 int is_random;
 int nframes;
@@ -84,7 +83,6 @@ int main( int argc, char *argv[] ){
 	virtmem = page_table_get_virtmem(pt);
 	physmem = page_table_get_physmem(pt);
 	seech_array = (int*)calloc(nframes, sizeof(int));
-	printf("%d\n",nframes * sizeof(int) );
 
 	if(!strcmp(program,"sort")) {
 		sort_program(virtmem,npages*PAGE_SIZE);
@@ -240,9 +238,8 @@ void second_chance_fault_handler(struct page_table *pt, int page){
 
 			for (int i = 0; i < npages; i++){
 
-				while (seech_array[i]) {
+				while (seech_array[i] == 1) {
 					seech_array[i] = 0;
-					printf("%d\n", i);
 					fifo_counter+=1;
 				}
 				page_table_get_entry(pt, i, &frame, &bits);
