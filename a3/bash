@@ -1,0 +1,20 @@
+#!/bin/bash
+
+touch page_fault.txt
+
+algor=('rand' 'fifo' 'sech');
+
+typee=('sort' 'scan' 'focus');
+
+for (( i = 0; i < 3; i++ )); do
+	# echo ${algor[i]}
+	for (( t = 0; t < 3; t++ )); do
+		echo "${algor[i]} ${typee[t]}" >> page_fault.txt
+		for (( j = 3; j <= 100; j++ )); do
+			# echo "100 $j"
+			# ./virtmem 100 ${j} ${algor[i]} ${typee[t]}
+			# ./virtmem
+			./virtmem 100 ${j} ${algor[i]} ${typee[t]} >> page_fault.txt
+		done
+	done
+done

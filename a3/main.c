@@ -35,7 +35,6 @@ void fifo_fault_handler(struct page_table *pt, int page);
 void second_chance_fault_handler(struct page_table *pt, int page);
 
 void page_fault_handler( struct page_table *pt, int page ){
-	page_faults++;
 
 	if (!strcmp(type, "rand")){
 		random_fault_handler(pt,page);
@@ -97,6 +96,7 @@ int main( int argc, char *argv[] ){
 		fprintf(stderr,"unknown program: %s\n",argv[4]);
 
 	}
+	// page_table_print(pt);
 
 	page_table_delete(pt);
 	disk_close(disk);
@@ -104,6 +104,9 @@ int main( int argc, char *argv[] ){
 	printf("Disk Reads: %d\n", disk_reads);
 	printf("Disk Writes: %d\n", disk_writes);
 	printf("Page Faults: %d\n", page_faults);
+	//printf("Page Faults: %d\n", page_faults);
+	//printf("%d\n", page_faults);
+
 
 	return 0;
 }
@@ -115,6 +118,7 @@ void random_fault_handler(struct page_table *pt, int page){
 		srand(time(NULL));
 		is_random = 1;
 	}
+	page_faults++;
 
 	int frame;
 	int bits;
@@ -134,17 +138,26 @@ void random_fault_handler(struct page_table *pt, int page){
 			for (int i = 0; i < npages; i++){
 				page_table_get_entry(pt, i, &frame, &bits);
 
-				if (frame == random_frame){
+				if (frame == random_frame && bits != 0){
 
-					disk_write(disk, i, &physmem[frame* PAGE_SIZE]);
-					disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
-					page_table_set_entry(pt, page, frame, PROT_READ);
-					page_table_set_entry(pt, i, 0, 0);
+					if ((bits & PROT_WRITE) == PROT_WRITE){
+						disk_write(disk, i, &physmem[frame* PAGE_SIZE]);
+						disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
+						page_table_set_entry(pt, page, frame, PROT_READ);
+						page_table_set_entry(pt, i, 0, 0);
+						disk_writes++;
+					}
+					else{
+						disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
+						page_table_set_entry(pt, page, frame, PROT_READ);
+						page_table_set_entry(pt, i, 0, 0);
+					}
+					
 					disk_reads++;
-					disk_writes++;
 					break;
 
 				}
+				
 			}
 		}
 		// if not full
@@ -154,7 +167,6 @@ void random_fault_handler(struct page_table *pt, int page){
 			last_frame_counter++;
 			disk_reads++;
 		}
-
 	}
 	else{
 		printf("Fault in random page handler\n");
@@ -164,6 +176,7 @@ void random_fault_handler(struct page_table *pt, int page){
 
 
 void fifo_fault_handler(struct page_table *pt, int page){
+	page_faults++;
 
 	int frame;
 	int bits;
@@ -182,9 +195,9 @@ void fifo_fault_handler(struct page_table *pt, int page){
 			for (int i = 0; i < npages; i++){
 				page_table_get_entry(pt, i, &frame, &bits);
 
-				if (frame == fifo_counter%nframes){
+				if (frame == fifo_counter%nframes && bits != 0){
 
-					if ((bits ^ (PROT_READ|PROT_WRITE))==0){
+					if ((bits & PROT_WRITE) == PROT_WRITE){
 						disk_write(disk, i, &physmem[frame* PAGE_SIZE]);
 						disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
 						page_table_set_entry(pt, page, frame, PROT_READ);
@@ -198,11 +211,13 @@ void fifo_fault_handler(struct page_table *pt, int page){
 					}
 					
 					disk_reads++;
-					fifo_counter += 1;
 					break;
 
 				}
+				
 			}
+			fifo_counter++;
+
 		}
 		// if not full
 		else{
@@ -217,68 +232,84 @@ void fifo_fault_handler(struct page_table *pt, int page){
 		printf("Fault in random page handler\n");
 		exit(1);
 	}
+
 
 }
 
 void second_chance_fault_handler(struct page_table *pt, int page){
+	page_faults++;
 
 	int frame;
 	int bits;
 
+	//page_table_print(pt);
+	// printf("\n");
+	// page_table_print_entry(pt, page);
+	// printf("\nbits: ");
+	// for (int i = 0; i < nframes; ++i)
+	// {
+	// 	printf("%d", seech_array[i]);
+	// }
+	// printf("\n");
+
 	page_table_get_entry(pt, page, &frame, &bits);
 
-	if(bits){
-		page_table_set_entry(pt, page, frame, PROT_READ|PROT_WRITE);
-		seech_array[frame] = (seech_array[frame] + 1) % 2;
-	}
-
-	else if (!bits){
-		// if full
-		if (last_frame_counter == nframes){
-
-			for (int i = 0; i < npages; i++){
-
-				while (seech_array[i] == 1) {
-					seech_array[i] = 0;
-					fifo_counter+=1;
-				}
-				page_table_get_entry(pt, i, &frame, &bits);
-
-				if (frame == fifo_counter%nframes){
-
-					if ((bits ^ (PROT_READ|PROT_WRITE))==0){
-						disk_write(disk, i, &physmem[frame* PAGE_SIZE]);
-						disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
-						page_table_set_entry(pt, page, frame, PROT_READ);
-						page_table_set_entry(pt, i, 0, 0);
-						disk_writes++;
-					}
-					else{
-						disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
-						page_table_set_entry(pt, page, frame, PROT_READ);
-						page_table_set_entry(pt, i, 0, 0);
-					}
-					
-					disk_reads++;
-					fifo_counter += 1;
-					seech_array[i] = 1;
-					break;
-
-				}
-			}
-		}
-		// if not full
-		else{
-			page_table_set_entry(pt,page, last_frame_counter, PROT_READ);
-			disk_read(disk, page, &physmem[last_frame_counter* PAGE_SIZE]);
-			seech_array[last_frame_counter] = 1; 
-			last_frame_counter++;
-			disk_reads++;
-		}
+	if(npages <= nframes){
+		page_table_set_entry(pt, page, page, PROT_READ|PROT_WRITE);
 
 	}
 	else{
-		printf("Fault in random page handler\n");
-		exit(1);
+
+		if ((bits & PROT_READ) == PROT_READ) {
+			page_table_set_entry(pt, page, frame, bits | PROT_WRITE);
+		}
+		else if (bits == 0){
+			// if full
+			if (last_frame_counter == nframes){
+
+				for (int i = 0; i < npages; i++){
+
+					page_table_get_entry(pt, i % npages, &frame, &bits);
+
+					if (bits != 0){
+
+						if ((bits & PROT_EXEC) == PROT_EXEC){
+							page_table_set_entry(pt, i% npages, frame, bits - PROT_EXEC);
+						}
+
+						else{
+							if ((bits & PROT_WRITE) == PROT_WRITE){
+								disk_write(disk, i %npages, &physmem[frame* PAGE_SIZE]);
+								disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
+								page_table_set_entry(pt, page, frame, PROT_READ | PROT_EXEC);
+								page_table_set_entry(pt, i % npages, 0, 0);
+								disk_writes++;
+							}
+							else{
+								disk_read(disk, page, &physmem[frame* PAGE_SIZE]);
+								page_table_set_entry(pt, page, frame, PROT_READ | PROT_EXEC);
+								page_table_set_entry(pt, i % npages, 0, 0);
+							}
+							
+							disk_reads++;
+							fifo_counter = i+1;
+							//seech_array[fifo_counter %nframes] = 1;
+							break;
+						}
+					}
+				}
+				fifo_counter++;
+			}
+			// if not full
+			else{
+				page_table_set_entry(pt,page, last_frame_counter, PROT_READ | PROT_EXEC);
+				disk_read(disk, page, &physmem[last_frame_counter* PAGE_SIZE]);
+				//seech_array[last_frame_counter] = 1; 
+				last_frame_counter++;
+				disk_reads++;
+			}		
+		}			
+
 	}
+	
 }

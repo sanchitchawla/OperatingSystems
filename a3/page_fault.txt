@@ -1,0 +1,1773 @@
+rand sort
+sort result is -274605
+2752
+sort result is -274605
+2389
+sort result is -274605
+2222
+sort result is -199519
+2037
+sort result is -199519
+1910
+sort result is -199519
+1888
+sort result is -199519
+1734
+sort result is -199519
+1696
+sort result is -199519
+1675
+sort result is -199519
+1603
+sort result is -199519
+1515
+sort result is -199519
+1499
+sort result is -199519
+1468
+sort result is -271138
+1452
+sort result is -271138
+1433
+sort result is -271138
+1377
+sort result is -271138
+1339
+sort result is -271138
+1325
+sort result is -271138
+1305
+sort result is -271138
+1312
+sort result is -271138
+1290
+sort result is -271138
+1235
+sort result is -271138
+1206
+sort result is -271138
+1229
+sort result is -257046
+1218
+sort result is -257046
+1197
+sort result is -257046
+1166
+sort result is -257046
+1152
+sort result is -257046
+1132
+sort result is -257046
+1097
+sort result is -257046
+1089
+sort result is -257046
+1105
+sort result is -257046
+1087
+sort result is -257046
+1045
+sort result is -257046
+1054
+sort result is -190479
+1011
+sort result is -190479
+1012
+sort result is -190479
+1013
+sort result is -190479
+1007
+sort result is -190479
+966
+sort result is -190479
+952
+sort result is -190479
+945
+sort result is -190479
+904
+sort result is -190479
+943
+sort result is -190479
+925
+sort result is -190479
+905
+sort result is -206961
+883
+sort result is -206961
+913
+sort result is -206961
+886
+sort result is -206961
+865
+sort result is -206961
+850
+sort result is -206961
+825
+sort result is -206961
+831
+sort result is -206961
+793
+sort result is -206961
+780
+sort result is -206961
+788
+sort result is -206961
+706
+sort result is -223664
+751
+sort result is -223664
+728
+sort result is -223664
+714
+sort result is -223664
+716
+sort result is -223664
+679
+sort result is -223664
+694
+sort result is -223664
+684
+sort result is -223664
+643
+sort result is -223664
+626
+sort result is -223664
+657
+sort result is -223664
+610
+sort result is -164194
+609
+sort result is -164194
+595
+sort result is -164194
+593
+sort result is -164194
+562
+sort result is -164194
+554
+sort result is -164194
+548
+sort result is -164194
+507
+sort result is -164194
+522
+sort result is -164194
+490
+sort result is -164194
+467
+sort result is -164194
+467
+sort result is -164194
+468
+sort result is -217301
+400
+sort result is -217301
+417
+sort result is -217301
+436
+sort result is -217301
+383
+sort result is -217301
+391
+sort result is -217301
+365
+sort result is -217301
+361
+sort result is -217301
+349
+sort result is -217301
+324
+sort result is -217301
+314
+sort result is -217301
+321
+sort result is -217301
+292
+sort result is -261341
+286
+sort result is -261341
+259
+sort result is -261341
+248
+sort result is -261341
+224
+sort result is -261341
+211
+sort result is -260025
+100
+rand scan
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1199
+scan result is 522240000
+1199
+scan result is 522240000
+1200
+scan result is 522240000
+1197
+scan result is 522240000
+1194
+scan result is 522240000
+1198
+scan result is 522240000
+1192
+scan result is 522240000
+1191
+scan result is 522240000
+1187
+scan result is 522240000
+1192
+scan result is 522240000
+1187
+scan result is 522240000
+1187
+scan result is 522240000
+1180
+scan result is 522240000
+1170
+scan result is 522240000
+1182
+scan result is 522240000
+1169
+scan result is 522240000
+1160
+scan result is 522240000
+1156
+scan result is 522240000
+1149
+scan result is 522240000
+1148
+scan result is 522240000
+1157
+scan result is 522240000
+1139
+scan result is 522240000
+1131
+scan result is 522240000
+1119
+scan result is 522240000
+1120
+scan result is 522240000
+1095
+scan result is 522240000
+1098
+scan result is 522240000
+1096
+scan result is 522240000
+1086
+scan result is 522240000
+1096
+scan result is 522240000
+1074
+scan result is 522240000
+1064
+scan result is 522240000
+1043
+scan result is 522240000
+1051
+scan result is 522240000
+1029
+scan result is 522240000
+1019
+scan result is 522240000
+1013
+scan result is 522240000
+1002
+scan result is 522240000
+984
+scan result is 522240000
+966
+scan result is 522240000
+970
+scan result is 522240000
+966
+scan result is 522240000
+944
+scan result is 522240000
+934
+scan result is 522240000
+895
+scan result is 522240000
+902
+scan result is 522240000
+877
+scan result is 522240000
+873
+scan result is 522240000
+863
+scan result is 522240000
+841
+scan result is 522240000
+829
+scan result is 522240000
+820
+scan result is 522240000
+817
+scan result is 522240000
+800
+scan result is 522240000
+778
+scan result is 522240000
+773
+scan result is 522240000
+747
+scan result is 522240000
+744
+scan result is 522240000
+727
+scan result is 522240000
+709
+scan result is 522240000
+678
+scan result is 522240000
+654
+scan result is 522240000
+651
+scan result is 522240000
+609
+scan result is 522240000
+611
+scan result is 522240000
+611
+scan result is 522240000
+592
+scan result is 522240000
+574
+scan result is 522240000
+565
+scan result is 522240000
+541
+scan result is 522240000
+526
+scan result is 522240000
+501
+scan result is 522240000
+491
+scan result is 522240000
+469
+scan result is 522240000
+439
+scan result is 522240000
+426
+scan result is 522240000
+409
+scan result is 522240000
+395
+scan result is 522240000
+373
+scan result is 522240000
+341
+scan result is 522240000
+334
+scan result is 522240000
+307
+scan result is 522240000
+305
+scan result is 522240000
+278
+scan result is 522240000
+259
+scan result is 522240000
+236
+scan result is 522240000
+219
+scan result is 522240000
+100
+rand focus
+focus result is -1902
+499
+focus result is -2666
+494
+focus result is -3347
+490
+focus result is -3176
+494
+focus result is -3643
+489
+focus result is -3790
+473
+focus result is -3027
+490
+focus result is -4339
+489
+focus result is -2897
+471
+focus result is -4661
+468
+focus result is -4829
+469
+focus result is -2914
+466
+focus result is -2746
+459
+focus result is -3074
+470
+focus result is -3737
+468
+focus result is -2266
+456
+focus result is -3428
+453
+focus result is -5427
+464
+focus result is -2804
+457
+focus result is -3442
+436
+focus result is -4191
+450
+focus result is -2725
+453
+focus result is -3924
+449
+focus result is -2137
+433
+focus result is -661
+438
+focus result is -1876
+436
+focus result is -3233
+440
+focus result is -4144
+447
+focus result is -2625
+430
+focus result is -900
+417
+focus result is -3209
+431
+focus result is -4401
+420
+focus result is -2470
+429
+focus result is -2857
+405
+focus result is -4108
+397
+focus result is -2708
+412
+focus result is -1722
+414
+focus result is -2762
+403
+focus result is -2289
+405
+focus result is -1973
+397
+focus result is -4250
+392
+focus result is -3478
+393
+focus result is -2119
+382
+focus result is -1973
+383
+focus result is -2345
+371
+focus result is -2952
+390
+focus result is -3102
+369
+focus result is -2562
+376
+focus result is -1740
+377
+focus result is -2297
+370
+focus result is -3746
+366
+focus result is -1718
+368
+focus result is -2947
+336
+focus result is -3198
+365
+focus result is -3321
+339
+focus result is -2719
+350
+focus result is -2912
+336
+focus result is -1808
+335
+focus result is -1634
+320
+focus result is -2281
+324
+focus result is -2890
+320
+focus result is -4014
+341
+focus result is -2224
+323
+focus result is -2530
+319
+focus result is -2269
+306
+focus result is -3249
+335
+focus result is -4490
+310
+focus result is -2479
+306
+focus result is -1982
+302
+focus result is -2349
+306
+focus result is -1905
+303
+focus result is -3150
+298
+focus result is -2859
+300
+focus result is -4052
+290
+focus result is -1397
+291
+focus result is -3936
+284
+focus result is -4266
+263
+focus result is -6718
+269
+focus result is -3795
+278
+focus result is -3879
+274
+focus result is -4958
+267
+focus result is -33
+251
+focus result is -5895
+261
+focus result is -3651
+255
+focus result is -5437
+252
+focus result is -3961
+253
+focus result is -879
+235
+focus result is -1047
+240
+focus result is -1343
+230
+focus result is -386
+230
+focus result is -1092
+219
+focus result is 111
+217
+focus result is -693
+220
+focus result is -1201
+218
+focus result is -767
+213
+focus result is -879
+208
+focus result is -36
+204
+focus result is -1852
+100
+fifo sort
+sort result is -311357
+2460
+sort result is -311357
+2060
+sort result is -311357
+1948
+sort result is -311357
+1948
+sort result is -311357
+1716
+sort result is -311357
+1612
+sort result is -311357
+1612
+sort result is -311357
+1612
+sort result is -311357
+1612
+sort result is -311357
+1612
+sort result is -311357
+1400
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1300
+sort result is -311357
+1100
+sort result is -311357
+1098
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+1000
+sort result is -311357
+800
+sort result is -311357
+799
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+700
+sort result is -311357
+100
+fifo scan
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+1200
+scan result is 522240000
+100
+fifo focus
+focus result is -2533
+496
+focus result is -2533
+496
+focus result is -2533
+491
+focus result is -2533
+487
+focus result is -2533
+487
+focus result is -2533
+485
+focus result is -2533
+479
+focus result is -2533
+477
+focus result is -2533
+477
+focus result is -2533
+475
+focus result is -2533
+469
+focus result is -2533
+467
+focus result is -2533
+461
+focus result is -2533
+460
+focus result is -2533
+460
+focus result is -2533
+459
+focus result is -2533
+457
+focus result is -2533
+456
+focus result is -2533
+452
+focus result is -2533
+451
+focus result is -2533
+448
+focus result is -2533
+448
+focus result is -2533
+447
+focus result is -2533
+445
+focus result is -2533
+443
+focus result is -2533
+443
+focus result is -2533
+439
+focus result is -2533
+421
+focus result is -2533
+413
+focus result is -2533
+413
+focus result is -2533
+413
+focus result is -2533
+411
+focus result is -2533
+410
+focus result is -2533
+410
+focus result is -2533
+410
+focus result is -2533
+410
+focus result is -2533
+404
+focus result is -2533
+401
+focus result is -2533
+401
+focus result is -2533
+401
+focus result is -2533
+398
+focus result is -2533
+398
+focus result is -2533
+397
+focus result is -2533
+397
+focus result is -2533
+391
+focus result is -2533
+389
+focus result is -2533
+389
+focus result is -2533
+389
+focus result is -2533
+387
+focus result is -2533
+383
+focus result is -2533
+381
+focus result is -2533
+367
+focus result is -2533
+351
+focus result is -2533
+348
+focus result is -2533
+348
+focus result is -2533
+345
+focus result is -2533
+345
+focus result is -2533
+341
+focus result is -2533
+339
+focus result is -2533
+339
+focus result is -2533
+339
+focus result is -2533
+338
+focus result is -2533
+338
+focus result is -2533
+338
+focus result is -2533
+338
+focus result is -2533
+338
+focus result is -2533
+337
+focus result is -2533
+337
+focus result is -2533
+334
+focus result is -2533
+333
+focus result is -2533
+333
+focus result is -2533
+327
+focus result is -2533
+327
+focus result is -2533
+323
+focus result is -2533
+322
+focus result is -2533
+321
+focus result is -2533
+320
+focus result is -2533
+320
+focus result is -2533
+318
+focus result is -2533
+318
+focus result is -2533
+316
+focus result is -2533
+316
+focus result is -2533
+315
+focus result is -2533
+313
+focus result is -2533
+313
+focus result is -2533
+313
+focus result is -2533
+313
+focus result is -2533
+311
+focus result is -2533
+311
+focus result is -2533
+311
+focus result is -2533
+307
+focus result is -2533
+306
+focus result is -2533
+306
+focus result is -2533
+304
+focus result is -2533
+304
+focus result is -2533
+302
+focus result is -2533
+301
+focus result is -2533
+100
+sech sort
+sort result is -311357
+2891
+sort result is -311357
+2304
+sort result is -311357
+2130
+sort result is -311357
+1954
+sort result is -311357
+1761
+sort result is -311357
+1688
+sort result is -311357
+1650
+sort result is -311357
+1592
+sort result is -311357
+1558
+sort result is -311357
+1518
+sort result is -311357
+1467
+sort result is -311357
+1447
+sort result is -311357
+1431
+sort result is -311357
+1422
+sort result is -311357
+1397
+sort result is -311357
+1407
+sort result is -311357
+1366
+sort result is -311357
+1355
+sort result is -311357
+1350
+sort result is -311357
+1344
+sort result is -311357
+1305
+sort result is -311357
+1290
+sort result is -311357
+1270
+sort result is -311357
+1273
+sort result is -311357
+1279
+sort result is -311357
+1257
+sort result is -311357
+1233
+sort result is -311357
+1224
+sort result is -311357
+1215
+sort result is -311357
+1207
+sort result is -311357
+1198
+sort result is -311357
+1186
+sort result is -311357
+1185
+sort result is -311357
+1191
+sort result is -311357
+1168
+sort result is -311357
+1145
+sort result is -311357
+1136
+sort result is -311357
+1121
+sort result is -311357
+1109
+sort result is -311357
+1095
+sort result is -311357
+1083
+sort result is -311357
+1067
+sort result is -311357
+1052
+sort result is -311357
+1037
+sort result is -311357
+1021
+sort result is -311357
+1007
+sort result is -311357
+985
+sort result is -311357
+962
+sort result is -311357
+955
+sort result is -311357
+962
+sort result is -311357
+961
+sort result is -311357
+948
+sort result is -311357
+939
+sort result is -311357
+925
+sort result is -311357
+920
+sort result is -311357
+915
+sort result is -311357
+910
+sort result is -311357
+905
+sort result is -311357
+899
+sort result is -311357
+875
+sort result is -311357
+853
+sort result is -311357
+837
+sort result is -311357
+824
+sort result is -311357
+812
+sort result is -311357
+800
+sort result is -311357
+788
+sort result is -311357
+773
+sort result is -311357
+761
+sort result is -311357
+744
+sort result is -311357
+724
+sort result is -311357
+706
+sort result is -311357
+683
+sort result is -311357
+660
+sort result is -311357
+647
+sort result is -311357
+637
+sort result is -311357
+627
+sort result is -311357
+617
+sort result is -311357
+609
+sort result is -311357
+601
+sort result is -311357
+590
+sort result is -311357
+578
+sort result is -311357
+563
+sort result is -311357
+540
+sort result is -311357
+523
+sort result is -311357
+504
+sort result is -311357
+482
+sort result is -311357
+464
+sort result is -311357
+449
+sort result is -311357
+438
+sort result is -311357
+423
+sort result is -311357
+403
+sort result is -311357
+375
+sort result is -311357
+360
+sort result is -311357
+340
+sort result is -311357
+319
+sort result is -311357
+300
+sort result is -311357
+247
+sort result is -311357
+100
+sech scan
+scan result is 522240000
+1556
+scan result is 522240000
+1459
+scan result is 522240000
+1399
+scan result is 522240000
+1358
+scan result is 522240000
+1327
+scan result is 522240000
+1302
+scan result is 522240000
+1282
+scan result is 522240000
+1264
+scan result is 522240000
+1249
+scan result is 522240000
+1236
+scan result is 522240000
+1224
+scan result is 522240000
+1210
+scan result is 522240000
+1200
+scan result is 522240000
+1186
+scan result is 522240000
+1176
+scan result is 522240000
+1165
+scan result is 522240000
+1155
+scan result is 522240000
+1145
+scan result is 522240000
+1129
+scan result is 522240000
+1115
+scan result is 522240000
+1105
+scan result is 522240000
+1094
+scan result is 522240000
+1084
+scan result is 522240000
+1074
+scan result is 522240000
+1063
+scan result is 522240000
+1053
+scan result is 522240000
+1043
+scan result is 522240000
+1033
+scan result is 522240000
+1023
+scan result is 522240000
+1013
+scan result is 522240000
+998
+scan result is 522240000
+983
+scan result is 522240000
+973
+scan result is 522240000
+963
+scan result is 522240000
+952
+scan result is 522240000
+943
+scan result is 522240000
+932
+scan result is 522240000
+922
+scan result is 522240000
+912
+scan result is 522240000
+902
+scan result is 522240000
+892
+scan result is 522240000
+877
+scan result is 522240000
+862
+scan result is 522240000
+852
+scan result is 522240000
+842
+scan result is 522240000
+832
+scan result is 522240000
+822
+scan result is 522240000
+812
+scan result is 522240000
+802
+scan result is 522240000
+791
+scan result is 522240000
+781
+scan result is 522240000
+766
+scan result is 522240000
+752
+scan result is 522240000
+742
+scan result is 522240000
+731
+scan result is 522240000
+721
+scan result is 522240000
+711
+scan result is 522240000
+701
+scan result is 522240000
+691
+scan result is 522240000
+681
+scan result is 522240000
+666
+scan result is 522240000
+651
+scan result is 522240000
+641
+scan result is 522240000
+631
+scan result is 522240000
+621
+scan result is 522240000
+611
+scan result is 522240000
+601
+scan result is 522240000
+591
+scan result is 522240000
+576
+scan result is 522240000
+561
+scan result is 522240000
+551
+scan result is 522240000
+541
+scan result is 522240000
+531
+scan result is 522240000
+521
+scan result is 522240000
+511
+scan result is 522240000
+496
+scan result is 522240000
+481
+scan result is 522240000
+471
+scan result is 522240000
+461
+scan result is 522240000
+451
+scan result is 522240000
+441
+scan result is 522240000
+426
+scan result is 522240000
+411
+scan result is 522240000
+401
+scan result is 522240000
+391
+scan result is 522240000
+381
+scan result is 522240000
+366
+scan result is 522240000
+351
+scan result is 522240000
+341
+scan result is 522240000
+331
+scan result is 522240000
+316
+scan result is 522240000
+301
+scan result is 522240000
+291
+scan result is 522240000
+276
+scan result is 522240000
+261
+scan result is 522240000
+246
+scan result is 522240000
+218
+scan result is 522240000
+100
+sech focus
+focus result is -2533
+575
+focus result is -2533
+547
+focus result is -2533
+534
+focus result is -2533
+528
+focus result is -2533
+518
+focus result is -2533
+513
+focus result is -2533
+510
+focus result is -2533
+507
+focus result is -2533
+503
+focus result is -2533
+499
+focus result is -2533
+495
+focus result is -2533
+491
+focus result is -2533
+490
+focus result is -2533
+486
+focus result is -2533
+481
+focus result is -2533
+475
+focus result is -2533
+474
+focus result is -2533
+471
+focus result is -2533
+468
+focus result is -2533
+462
+focus result is -2533
+454
+focus result is -2533
+453
+focus result is -2533
+452
+focus result is -2533
+449
+focus result is -2533
+445
+focus result is -2533
+440
+focus result is -2533
+435
+focus result is -2533
+432
+focus result is -2533
+431
+focus result is -2533
+430
+focus result is -2533
+427
+focus result is -2533
+425
+focus result is -2533
+426
+focus result is -2533
+419
+focus result is -2533
+417
+focus result is -2533
+416
+focus result is -2533
+413
+focus result is -2533
+412
+focus result is -2533
+411
+focus result is -2533
+408
+focus result is -2533
+403
+focus result is -2533
+404
+focus result is -2533
+398
+focus result is -2533
+397
+focus result is -2533
+396
+focus result is -2533
+393
+focus result is -2533
+392
+focus result is -2533
+389
+focus result is -2533
+384
+focus result is -2533
+381
+focus result is -2533
+377
+focus result is -2533
+366
+focus result is -2533
+360
+focus result is -2533
+359
+focus result is -2533
+354
+focus result is -2533
+348
+focus result is -2533
+345
+focus result is -2533
+341
+focus result is -2533
+335
+focus result is -2533
+332
+focus result is -2533
+328
+focus result is -2533
+327
+focus result is -2533
+326
+focus result is -2533
+321
+focus result is -2533
+320
+focus result is -2533
+315
+focus result is -2533
+314
+focus result is -2533
+305
+focus result is -2533
+303
+focus result is -2533
+300
+focus result is -2533
+299
+focus result is -2533
+292
+focus result is -2533
+291
+focus result is -2533
+284
+focus result is -2533
+279
+focus result is -2533
+278
+focus result is -2533
+274
+focus result is -2533
+273
+focus result is -2533
+272
+focus result is -2533
+271
+focus result is -2533
+268
+focus result is -2533
+265
+focus result is -2533
+255
+focus result is -2533
+254
+focus result is -2533
+253
+focus result is -2533
+244
+focus result is -2533
+241
+focus result is -2533
+237
+focus result is -2533
+236
+focus result is -2533
+233
+focus result is -2533
+230
+focus result is -2533
+222
+focus result is -2533
+221
+focus result is -2533
+216
+focus result is -2533
+214
+focus result is -2533
+207
+focus result is -2533
+205
+focus result is -2533
+100
